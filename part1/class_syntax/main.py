@@ -19,21 +19,21 @@
 
 class Item:
     def __init__(self, title, price):
-        pass
-        # TODO напишите Ваш код здесь
+        self.title = title
+        self.price = price
+
 
 class Cheque:
     def __init__(self):
-        pass
-        # TODO напишите Ваш код здесь
+        self.items = []
 
     def purchases(self):
-        pass
-        # TODO напишите Ваш код здес
-    
+        item = [f"{item.title} - {item.price}" for item in self.items]
+        return "\n".join(item)
+
     def get_sum(self):
-        pass
-        # TODO напишите Ваш код здес
+        cheque_sum = sum([item.price for item in self.items])
+        return f"Всего: {cheque_sum}"
 
 if __name__ == '__main__':
     # Создаём товары с ценой
