@@ -43,18 +43,22 @@ class Storage:
     goods_quantity = 10
 
     def __init__(self, qnt):
-        # TODO напишите Ваш код здесь
-        # self.goods_quantity =                    # Оставим эту строчку для Вас в качестве подсказки
-        pass
+        if qnt < self._get_total():
+            self._set_total(self._get_total() - qnt)
+            self.i = qnt
+        else:
+            self.i = self._get_total()
+            self._set_total(0)
     @classmethod
     def _get_total(cls):
-        # TODO напишите Ваш код здесь
-        pass
+        return cls.goods_quantity
+
+    def get_total_2(self):
+        return self.goods_quantity
 
     @classmethod
     def _set_total(cls, qnt):
-        # TODO напишите Ваш код здесь
-        pass
+        cls.goods_quantity = qnt
 
 
 # Как закончите писать код, запустите его, 
@@ -64,15 +68,16 @@ if __name__ == '__main__':
     print("Всего на складе: ", Storage.goods_quantity)
     print("Создаём экземпляр класса Goods (пытаемся забрать 4 ед. со склада)")
     python = Storage(qnt=4)
+    print(python.get_total_2())
     print("Осталось на складе: ", Storage.goods_quantity)
-    print("Отгрузили со склада в экземпляр класса:", python.goods_quantity)
+    print("Отгрузили со склада в экземпляр класса:", python.i)
     print("Создаём экземпляр класса Goods (пытаемся забрать 5 ед. со склада)")
     python = Storage(qnt=5)
     print("Осталось на складе: ", Storage.goods_quantity)
-    print("Отгрузили со склада в экземпляр класса:", python.goods_quantity)
+    print("Отгрузили со склада в экземпляр класса:", python.i)
     print("Создаём экземпляр класса Goods (пытаемся забрать 2 ед. со склада)")
     python = Storage(qnt=2)
     print("Осталось на складе: ", Storage.goods_quantity)
-    print("Отгрузили со склада в экземпляр класса:", python.goods_quantity)
+    print("Отгрузили со склада в экземпляр класса:", python.i)
     print('=' * 20)
 

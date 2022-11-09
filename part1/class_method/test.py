@@ -44,7 +44,7 @@ class ClassesTestCase(SkyproTestCase):
             "goods_quantity")
 
         self.assertTrue(
-            instance.goods_quantity == 3,
+            instance.i == 3,
             "%@Проверьте что свойству `goods_quantity` экземпляра класса при инициализации "
             "присваивается правильное значение"
             )

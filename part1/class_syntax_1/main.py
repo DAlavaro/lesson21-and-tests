@@ -23,16 +23,6 @@
 # Формат вывода мы оставим прежний:
 # Cумма: 410
 
-class Item:
-    def __init__(self, title, price, unit, quantity):
-        self.title = title
-        self.price = price
-        self.unit = unit
-        self.quantity = quantity
-
-    def total_price(self):
-        return self.price * self.quantity
-
 
 class Cheque():
     def __init__(self):
@@ -50,6 +40,16 @@ class Cheque():
         cheque_sum = sum([item.total_price() for item in self.items])
 
         return f"Сумма: {cheque_sum}"
+
+class Item:
+    def __init__(self, title, price, unit, quantity):
+        self.title = title
+        self.price = price
+        self.unit = unit
+        self.quantity = quantity
+
+    def total_price(self):
+        return self.price * self.quantity
 
     
 # Это проверочный код, запустите файл, чтобы увидеть логику работы классов
