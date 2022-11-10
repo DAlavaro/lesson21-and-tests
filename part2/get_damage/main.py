@@ -41,8 +41,20 @@ class Unit:
 
 
 class StoneGuard(Unit):
-    # TODO опишите новый класс здесь
-    pass
+    def __init__(self, name, hp, defence, power):
+        super().__init__(name, hp, defence, power)
+        self.was_attacked = False
+
+    def _get_damage(self, damage):
+        if not self.was_attacked:
+            damage = 0
+            self.was_attacked = True
+            print(f"{self.name} блокирует урон")
+        super()._get_damage(damage)
+
+
+
+
 
 
 # Логика кода ниже такая же, как и в предыдущем задании.

@@ -5,7 +5,7 @@
 # Попробуйте поэкспериментировать с кодом в блоке if __name__ == __main__
 
 class Storage:
-    goods_quantity = 10
+    goods_quantity = 15
 
     def __init__(self, qnt):
         if qnt < self._get_total():
@@ -22,26 +22,30 @@ class Storage:
     @classmethod
     def _set_total(cls, qnt):
         cls.goods_quantity = qnt
-    
+
     def more(self, qnt):
         if qnt < self._get_total():
-            self._set_total(self._get_total() - qnt)
+            # число отгруженных товаров (число товаров у экземпляра класса)
             self.goods_quantity += qnt
+            # Число товаров на складе
+            self._set_total(self._get_total() - qnt)
         else:
+            # число отгруженных товаров
             self.goods_quantity = self._get_total()
+            # Число товаров на складе == 0
             self._set_total(0)
-    
+
     def less(self, qnt):
         if qnt < self.goods_quantity:
-            self.goods_quantity = (self.goods_quantity - qnt)
+            self.goods_quantity -= qnt
             self._set_total(self._get_total() + qnt)
         else:
             self._set_total(self._get_total() + self.goods_quantity)
             self.goods_quantity = 0
 
     def fullfill(self):
-        # TODO напишите функцию здесь
-        pass
+        self.goods_quantity += self._get_total()
+        self._set_total(0)
 
 
 # Посмотрите, что происходит с классом при применении различных методов.

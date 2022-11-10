@@ -17,57 +17,34 @@
 # их вам будет достаточно, чтобы написать собственный класс
 import random
 
-unit_1 = {
-    "name": "Случайны богатырь",
-    "hp": 20,
-    "power": 3,
-    "defence": 2,
-}
-
-
-def hit(unit, other):
-    damage = random.choice(range(1, unit.get("power")))
-    name = unit.get("name")
-    hp = unit.get("hp")
-    other_name = other.get("name")
-    other_hp = other.get("hp")
-    get_damage(other, damage)
-    return f"{name} ({hp}) наносит {damage} урона {other_name} ({other_hp})"
-
-
-def get_damage(unit, damage):
-    if unit.get("defence") < damage:
-        unit["hp"] -= damage - unit.get("defence")
-    is_alive(unit)
-
-
-def is_alive(unit):
-    name = unit.get("name")
-    if unit.get("hp") <= 0:
-        raise UnitDied(f'Трагически погиб в неравном бою {name}')
-    return True
-
-# Исключение для реализации гибели юнита, его не нужно менять
-
 
 class UnitDied(Exception):
     pass
 
-# TODO реализуйте класс Unit ниже
-
 
 class Unit:
     def __init__(self, name, hp, defence, power):
-        pass
+        self.name = name
+        self.hp = hp
+        self.defence = defence
+        self.power = power
 
-    def hit(self, other): # чтобы схватка была зрелищной, не забудьте здесь про return
-        pass
+    def hit(self, other):
+        # Урон который наночит наш герой по врагу
+        damage = random.choice(range(1, self.power))
+        # Урон который получает враг
+        other._get_damage(damage)
+        return f"{self.name} ({self.hp}) наносит {damage} урона {other.name} ({other.hp})"
 
     def _get_damage(self, damage):
-        pass
+        if self.defence < damage:
+            self.hp -= damage - self.defence
+        self.is_alive()
 
     def is_alive(self):
-        pass
+        if self.hp <= 0:
+            raise UnitDied(f'Трагически погиб в неравном бою {self.name}')
+        return True
 
 
 # Данная схватка должна заканчиваться победой Былинного богатыря.

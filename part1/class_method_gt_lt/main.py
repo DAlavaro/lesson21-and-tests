@@ -25,14 +25,26 @@ class Storage:
     @classmethod
     def _set_total(cls, qnt):
         cls.goods_quantity = qnt
-    
+
     def more(self, qnt):
-        # TODO Напишите Ваш код здесь
-        pass
-    
+        if qnt < self._get_total():
+            # число отгруженных товаров (число товаров у экземпляра класса)
+            self.goods_quantity += qnt
+            # Число товаров на складе
+            self._set_total(self._get_total() - qnt)
+        else:
+            # число отгруженных товаров
+            self.goods_quantity = self._get_total()
+            # Число товаров на складе == 0
+            self._set_total(0)
+
     def less(self, qnt):
-        # TODO Напишите Ваш код здесь
-        pass
+        if qnt < self.goods_quantity:
+            self.goods_quantity -= qnt
+            self._set_total(self._get_total() + qnt)
+        else:
+            self._set_total(self._get_total() + self.goods_quantity)
+            self.goods_quantity = 0
 
 
 if __name__ == '__main__':
