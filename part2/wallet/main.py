@@ -17,23 +17,31 @@ class Wallet:
     def __repr__(self):
         return f'З: {self.gold}, С: {self.silver}, Б: {self.bronze}'
 
+    def _bronze(self):
+        price = self.bronze + self.silver * 100 + self.gold * 1000
+        return price
+
+
     def __eq__(self, other):
-        pass
+        return self._bronze() == other._bronze()
+
 
     def __ne__(self, other):
-        pass
+        print(self._bronze())
+        print(other._bronze())
+        return self._bronze() != other._bronze()
 
     def __gt__(self, other):
-        pass
+        return self._bronze() > other._bronze()
 
     def __ge__(self, other):
-        pass
+        return self._bronze() >= other._bronze()
 
     def __lt__(self, other):
-        pass
+        return self._bronze() < other._bronze()
 
     def __le__(self, other):
-        pass
+        return self._bronze() <= other._bronze()
 
 
 # Здесь код для самопроверки, 
